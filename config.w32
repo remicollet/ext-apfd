@@ -1,5 +1,5 @@
 ARG_ENABLE("apfd", "enable apfd support", "no");
 
 if (PHP_APFD != "no") {
-	EXTENSION("apfd", "php_apfd.c");
+	EXTENSION("apfd", "php_apfd.c", PHP_EXTNAME_SHARED, "/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1");
 }

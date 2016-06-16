@@ -16,7 +16,7 @@
 extern zend_module_entry apfd_module_entry;
 #define phpext_apfd_ptr &apfd_module_entry
 
-#define PHP_APFD_VERSION "1.0.1"
+#define PHP_APFD_VERSION "1.0.2dev"
 
 #ifdef PHP_WIN32
 #	define PHP_APFD_API __declspec(dllexport)
@@ -28,6 +28,10 @@ extern zend_module_entry apfd_module_entry;
 
 #ifdef ZTS
 #	include "TSRM.h"
+#endif
+
+#if defined(COMPILE_DL_APFD) && PHP_VERSION_ID >= 70000
+ZEND_TSRMLS_CACHE_EXTERN()
 #endif
 
 #endif	/* PHP_APFD_H */

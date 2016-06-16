@@ -2,5 +2,5 @@ PHP_ARG_ENABLE(apfd, whether to enable apfd support,
 [  --enable-apfd      Enable always-populate-form-data support])
 
 if test "$PHP_APFD" != "no"; then
-  PHP_NEW_EXTENSION(apfd, php_apfd.c, $ext_shared)
+  PHP_NEW_EXTENSION(apfd, php_apfd.c, $ext_shared,, -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1)
 fi

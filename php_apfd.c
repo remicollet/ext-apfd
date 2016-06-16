@@ -75,6 +75,10 @@ static inline void apfd_update_files(zval *files TSRMLS_DC)
 
 PHP_RINIT_FUNCTION(apfd)
 {
+#if PHP_VERSION_ID >= 70000
+	ZEND_TSRMLS_CACHE_UPDATE();
+#endif
+
 	/* populate form data on non-POST requests */
 	if (SG(request_info).request_method && strcasecmp(SG(request_info).request_method, "POST") && SG(request_info).content_type && *SG(request_info).content_type) {
 		char *ct_str, *ct_dup = estrdup(SG(request_info).content_type);
@@ -143,6 +147,10 @@ zend_module_entry apfd_module_entry = {
 
 #ifdef COMPILE_DL_APFD
 ZEND_GET_MODULE(apfd)
+
+#	if PHP_VERSION_ID >= 70000
+ZEND_TSRMLS_CACHE_DEFINE()
+#	endif
 #endif
 
 /*
